@@ -1,3 +1,5 @@
+using System;
+
 namespace GameStore.api.Dtos;
 
 public record class GameDto(
