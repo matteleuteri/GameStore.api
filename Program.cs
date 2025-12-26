@@ -53,10 +53,10 @@ app.MapPut("games/{id}", (int id, UpdateGameDto updatedGame) =>
 {
     var index = games.FindIndex(game => game.Id == id);
 
-    // if (index == -1)
-    // {
-    //     return Results.NotFound();
-    // }
+    if (index == -1)
+    {
+        return Results.NotFound();
+    }
 
     games[index] = new GameDto(
         id,
@@ -69,6 +69,13 @@ app.MapPut("games/{id}", (int id, UpdateGameDto updatedGame) =>
     return Results.NoContent();
 });
 
+// DELETE /games/1
+app.MapDelete("games/{id}", (int id)=>
+{
+    games.RemoveAll(games => games.Id == id);
+
+    return Results.NoContent();
+});
 app.Run();
 
 // POST /games
