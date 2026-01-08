@@ -362,10 +362,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-Data/Migrations/20260106064334_seedGeneres.cs
+Data/Migrations/*
 .gitignore
-Data/Migrations/20260106064334_seedGeneres.Designer.cs
-Data/Migrations/GameStoreContextModelSnapshot.cs
 GameStore.db
 GameStore.db-shm
 GameStore.db-wal
