@@ -12,6 +12,8 @@ app.MapGamesEndpoints();
 
 app.MigrateDB();
 
+// Hi Dongwei.
+
 app.Run();
 
 // POST /games
