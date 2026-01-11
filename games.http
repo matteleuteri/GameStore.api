@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "name": "MarioKart 8",
-    "genre": "Racing",
+    "genreId": 5,
     "Price": 69.99,
     "releaseDate": "2025-06-21"
 }

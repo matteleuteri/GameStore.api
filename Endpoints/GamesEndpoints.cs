@@ -1,4 +1,6 @@
 using GameStore.api.Dtos;
+using GameStore.api.Entities;
+using GameStore.Api.Data;
 
 namespace GameStore.api.Endpoints;
 
@@ -42,22 +44,34 @@ public static class GameEndPoints
             return game is null ? Results.NotFound() : Results.Ok(game);
         }).WithName(GetGameEndpointName);
 
-        group.MapPost("/", (CreateGameDto newGame) => 
+        group.MapPost("/", (CreateGameDto newGame, GameStoreContext dbContext) => 
         {
             if (string.IsNullOrEmpty(newGame.Name))
             {
                 return Results.BadRequest("Name is required");
             }
 
-            GameDto game = new(
-                games.Count + 1,
-                newGame.Name,
-                newGame.Genre,
-                newGame.Price,
-                newGame.ReleaseDate);
+            Game game = new()
+            {
+                Name = newGame.Name,
+                Genre = dbContext.Genres.Find(newGame.GenreId),
+                GenreId = newGame.GenreId,
+                Price = newGame.Price,
+                ReleaseDate = newGame.ReleaseDate
+            };
             
-            games.Add(game);
-            return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game);
+            dbContext.Games.Add(game);
+            dbContext.SaveChanges();
+
+            GameDto gameDto = new(
+                game.Id,
+                game.Name,
+                game.Genre!.Name ?? "Unknown",
+                game.Price,
+                game.ReleaseDate
+            );
+
+            return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, gameDto);
         });
 
         // PUT /games/1
