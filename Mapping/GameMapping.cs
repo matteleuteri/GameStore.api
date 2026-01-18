@@ -16,9 +16,9 @@ public static class GameMapping
         };
     }
 
-    public static GameDto ToDto(this Game game)     
+    public static GameSummaryDto ToGameSummaryDto(this Game game)     
     {
-        return new GameDto(
+        return new (
             game.Id,
             game.Name,
             game.Genre?.Name ?? "Unknown",
@@ -26,4 +26,15 @@ public static class GameMapping
             game.ReleaseDate
         );
     }
-}
+
+    public static GameDetailsDto ToGameDetailsDto(this Game game)     
+    {
+        return new (
+            game.Id,
+            game.Name,
+            game.GenreId,
+            game.Price,
+            game.ReleaseDate
+        );
+    }
+}       

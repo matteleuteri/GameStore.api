@@ -2,9 +2,9 @@ using System;
 
 namespace GameStore.api.Dtos;
 
-public record class GameDto(
+public record class GameSummaryDto(
     int Id, 
     string Name, 
     string Genre, 
-    decimal price, 
+    decimal Price, 
     DateOnly ReleaseDate);

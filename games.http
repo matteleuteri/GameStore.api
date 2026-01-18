@@ -1,7 +1,7 @@
 GET http://localhost:5015/games
 
 ###
-GET http://localhost:5015/games/4
+GET http://localhost:5015/games/5
 
 ###
 Post http://localhost:5015/games/
