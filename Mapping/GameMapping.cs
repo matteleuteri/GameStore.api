@@ -5,14 +5,26 @@ namespace GameStore.api.Mapping;
 
 public static class GameMapping
 {
-    public static Game ToEntity(this CreateGameDto dto)
+    public static Game ToEntity(this CreateGameDto gameDto)
     {
-        return new Game
+        return new Game()
         {
-            Name = dto.Name,
-            GenreId = dto.GenreId,
-            Price = dto.Price,
-            ReleaseDate = dto.ReleaseDate
+            Name = gameDto.Name,
+            GenreId = gameDto.GenreId,
+            Price = gameDto.Price,
+            ReleaseDate = gameDto.ReleaseDate
+        };
+    }
+
+    public static Game ToEntity(this UpdateGameDto game, int id)
+    {
+        return new Game()
+        {
+            Id = id,
+            Name = game.Name,
+            GenreId = game.GenreId,
+            Price = game.Price,
+            ReleaseDate = game.ReleaseDate
         };
     }
 
