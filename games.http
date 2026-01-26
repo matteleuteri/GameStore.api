@@ -1,7 +1,7 @@
 GET http://localhost:5015/games
 
 ###
-GET http://localhost:5015/games/5
+GET http://localhost:5015/games/4
 
 ###
 Post http://localhost:5015/games/
@@ -19,9 +19,8 @@ PUT http://localhost:5015/games/4
 Content-Type: application/json
 
 {
-  "id": 4,
-  "name": "MarioKart 8",
-  "genre": "Racing",
+  "name": "MarioKart 10",
+  "genreId": 1,
   "price": 59.99,
   "releaseDate": "2014-05-30"
 }
