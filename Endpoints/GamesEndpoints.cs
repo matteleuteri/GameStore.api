@@ -10,27 +10,6 @@ public static class GameEndPoints
 {
     const string GetGameEndpointName = "GetGame";
 
-    private static readonly List<GameSummaryDto> games = [
-        new(
-            1, 
-            "Pokemon: Heartgold",
-            "Role-Playing",
-            12.72M,
-            new DateOnly(2010, 3, 14)),
-        new (
-            2, 
-            "Minecraft", 
-            "Sandbox",
-            350M, 
-            new DateOnly(2009, 5, 17)),
-        new (
-            3, 
-            "Wii Sports Resort",
-            "Sports", 
-            33.14M ,
-            new DateOnly(2009, 6, 25))
-    ];
-
     public static RouteGroupBuilder MapGamesEndpoints(this WebApplication app)
     {
         var group = app.MapGroup("games").WithParameterValidation();
@@ -73,7 +52,6 @@ public static class GameEndPoints
         group.MapPut("/{id}", (int id, UpdateGameDto updatedGame, GameStoreContext dbContext) => 
         {
             var existingGame = dbContext.Games.Find(id);
-            var index = games.FindIndex(game => game.Id == id);
 
             if (existingGame is null)   
             {
